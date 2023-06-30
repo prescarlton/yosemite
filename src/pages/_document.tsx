@@ -1,9 +1,11 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { createGetInitialProps } from '@mantine/next'
+import { Head, Html, Main, NextScript } from 'next/document'
 
 export default function Document() {
+  const getInitialProps = createGetInitialProps()
   return (
     <Html lang="en">
-      <Head />
+      <Head title="Yosemite" />
       <body>
         <Main />
         <NextScript />
