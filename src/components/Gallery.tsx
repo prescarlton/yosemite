@@ -1,12 +1,15 @@
-import { Box, Card, createStyles, Grid, Image, SimpleGrid } from '@mantine/core'
+import { SimpleGrid, Skeleton, Text } from '@mantine/core'
 
 import ImageCard from '@/components/ImageCard'
-import { API_URL } from '@/constants'
 import useListImages from '@/hooks/useListImages'
 
 const Gallery = () => {
-  const { data: images } = useListImages()
-  return (
+  const { data: images, isLoading } = useListImages()
+  return !images?.length && !isLoading ? (
+    <Text align="center">
+      We {`haven't`} taken any pictures yet. Hang tight!
+    </Text>
+  ) : (
     <SimpleGrid
       breakpoints={[
         { minWidth: 'xs', cols: 1, spacing: 'xs', verticalSpacing: 'xs' },
@@ -21,9 +24,22 @@ const Gallery = () => {
         },
       ]}
     >
-      {images?.map((image) => (
-        <ImageCard key={image.id} image={image} />
-      ))}
+      {isLoading ? (
+        <>
+          <Skeleton sx={{ aspectRatio: '1' }} />
+          <Skeleton sx={{ aspectRatio: '1' }} />
+          <Skeleton sx={{ aspectRatio: '1' }} />
+          <Skeleton sx={{ aspectRatio: '1' }} />
+          <Skeleton sx={{ aspectRatio: '1' }} />
+          <Skeleton sx={{ aspectRatio: '1' }} />
+          <Skeleton sx={{ aspectRatio: '1' }} />
+          <Skeleton sx={{ aspectRatio: '1' }} />
+          <Skeleton sx={{ aspectRatio: '1' }} />
+          <Skeleton sx={{ aspectRatio: '1' }} />
+        </>
+      ) : (
+        images?.map((image) => <ImageCard key={image.id} image={image} />)
+      )}
     </SimpleGrid>
   )
 }
