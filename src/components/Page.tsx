@@ -44,9 +44,12 @@ export const Page = ({ children, title, description }: IPage) => {
           <ActionIcon onClick={onClickBack}>
             {route != '/' && <ChevronLeft />}
           </ActionIcon>
-          <Stack sx={{ alignItems: 'center' }}>
+          <Stack sx={{ alignItems: 'center' }} spacing="0">
             <Title size="h1">{`Yosemite Trip '23`}</Title>
-            <Title size="h5">{`We're driving 6,000 miles to see a fancy Taco Bell.`}</Title>
+            <Title
+              size="h5"
+              align="center"
+            >{`We're driving 6,000 miles to see a fancy Taco Bell.`}</Title>
           </Stack>
           <ActionIcon></ActionIcon>
         </Flex>
